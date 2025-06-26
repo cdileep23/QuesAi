@@ -14,6 +14,7 @@ import Repurpose from "./components/CustomComponents/Repurpose.jsx";
 import { PodCastWidget } from "./components/CustomComponents/PodCastWidget.jsx";
 import { Upgrade } from "./components/CustomComponents/Upgrade.jsx";
 import UserProfile from "./components/CustomComponents/UserProfile.jsx";
+import PodCast from "./components/CustomComponents/PodCast.jsx";
 
 
 const appRouter = createBrowserRouter([
@@ -32,6 +33,12 @@ const appRouter = createBrowserRouter([
               {
                 path: "add-podcast", // Relative path - no leading slash
                 element: <AddPodcast />,
+                children: [
+                  {
+                    path: "podcast/:podcastId",
+                    element: <PodCast />,
+                  },
+                ],
               },
               {
                 path: "repurpose",
@@ -46,9 +53,9 @@ const appRouter = createBrowserRouter([
                 element: <Upgrade />,
               },
               {
-                path:'profile',
-                element:<UserProfile/>
-              }
+                path: "profile",
+                element: <UserProfile />,
+              },
             ],
           },
         ],

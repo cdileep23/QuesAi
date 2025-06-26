@@ -95,7 +95,7 @@ export const getPodcastById=async(req,res)=>{
 
        
 
-        const podcast = await PodcastModel.findById(podcastId);
+const podcast = await PodcastModel.findById(podcastId).populate("projectId");
         if (!podcast) {
           return res.status(404).json({
             success: false,
@@ -126,7 +126,11 @@ export const getPodcastById=async(req,res)=>{
           podcast
         });
    } catch (error) {
-    
+    console.log(error)
+    return res.status(500).json({
+      success:false,
+      message:error.message
+    })
    } 
 }
 

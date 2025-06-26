@@ -14,7 +14,7 @@ import { Link, useParams, useLocation } from "react-router-dom";
 const NavLinks = [
   {
     path: "add-podcast",
-    displayName: "Add your Podcast(s)",
+    displayName: "Add your Podcast",
     icon: <Plus className="w-5 h-5" />,
   },
   {

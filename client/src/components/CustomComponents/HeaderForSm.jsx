@@ -46,9 +46,9 @@ const HeaderForSm = ({ projectName, currentTab }) => {
           <BellRing />
         </Button>
 
-        <Sheet>
+        <Sheet >
           <SheetTrigger>
-            <Button variant={"outline"}>
+            <Button className='lg:hidden' variant={"outline"}>
               <Columns3 />
             </Button>
           </SheetTrigger>

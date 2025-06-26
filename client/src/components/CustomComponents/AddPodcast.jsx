@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../../../lib/baseurl";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import HeaderForSm from "./HeaderForSm";
 import { File, Upload, UploadCloud, Youtube } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
@@ -9,6 +9,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
+import PodcastTable from "./PodcastTable";
 const AddTypes = [
   {
     name: "RSS FEED",
@@ -30,7 +31,7 @@ const AddPodcast = () => {
   const [loading,setLoading]=useState(false)
   const [data, setData] = useState(null);
   const[open,setOpen]=useState(false)
-  const { projectId } = useParams();
+  const { projectId ,podcastId} = useParams();
   const[formData,setFormData]=useState({
     name:"",
     transcript:""
@@ -42,6 +43,7 @@ const AddPodcast = () => {
       const res = await axios.get(url, { withCredentials: true });
       console.log(res.data);
       if (res.data?.success) {
+      console.log(res.data)
         setData(res.data);
       }
     } catch (error) {
@@ -81,6 +83,10 @@ console.log(formData)
 const HandleOnchange=(e,name)=>{
   setFormData((prev)=>({...prev, [name]:e.target.value}))
 }
+if(podcastId){
+  return <Outlet/>
+}
+
   return (
     <div>
       {!data ? (
@@ -96,7 +102,7 @@ const HandleOnchange=(e,name)=>{
           <div className="px-4 flex-col items-center  mt-4">
             <h1 className="font-bold text-2xl">Add Podcast</h1>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 mt-4 p-2">
+          <div className="grid grid-cols-1 lg:grid-cols-3 my-4 p-2">
             {AddTypes.map((item, index) => (
               <div
                 onClick={() => setOpen(true)}
@@ -104,16 +110,17 @@ const HandleOnchange=(e,name)=>{
                 className="flex hover:cursor-pointer justify-between items-center lg:max-w-[340px] m-1 mb-4 px-4 py-6 rounded-lg shadow-sm border bg-white hover:shadow-md transition-all"
               >
                 <div>
-                  <h1 className="text-lg font-semibold text-[#1D1929]">
+                  <h1 className="text-lg font-semibold text-black">
                     {item.name}
                   </h1>
                   <p className="text-sm text-[#646464]">{item.para}</p>
                 </div>
 
-                <div className="bg-purple-100 p-3 rounded-md">{item.icon}</div>
+                <div className="bg-purple-100 p-3  text-[#7E22CE] rounded-md">{item.icon}</div>
               </div>
             ))}
           </div>
+          <PodcastTable fetchProjectById={fetchProjectById} setOpen={setOpen}  podcasts={data.podcasts}/>
         </div>
       )}
       <Dialog open={open} onOpenChange={setOpen}>
@@ -148,7 +155,6 @@ const HandleOnchange=(e,name)=>{
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
-       
       </Dialog>
     </div>
   );

@@ -12,7 +12,7 @@ const ProjectCard = ({ project }) => {
   return (
     <Link to={`/project/${project._id}/add-podcast`} className="mb-6">
       <div className="flex items-center border border-gray-300 rounded-xl p-4 w-full md:w-[380px] hover:shadow-md">
-        <div className="flex items-center justify-center bg-amber-400 rounded-xl w-16 h-16 font-bold text-white text-xl mr-4">
+        <div className="flex items-center justify-center bg-purple-100 rounded-xl w-16 h-16 font-bold text-[#7E22CE] text-xl mr-4">
           {initial}
         </div>
 
