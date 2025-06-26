@@ -7,12 +7,12 @@ import jwt from "jsonwebtoken";
 
 export const signIn = async (req, res) => {
   try {
-    const { email, name, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!email || !name || !password) {
+    if (!email  || !password) {
       return res.status(400).json({
         success: false,
-        message: "Email, Name, and Password are required",
+        message: "Email, and Password are required",
       });
     }
 
@@ -42,7 +42,7 @@ export const signIn = async (req, res) => {
 
     const newUser = await userModel.create({
       email,
-      name,
+    
       password: hashedPassword,
     });
 

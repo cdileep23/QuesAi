@@ -10,14 +10,14 @@ export const getAllProjects = async (req, res) => {
 
     const projectsWithPodcasts = await ProjectModel.aggregate([
       {
-        $match: { userId:  mongoose.Types.ObjectId(userId) },
+        $match: { userId: new mongoose.Types.ObjectId(userId) }, // filter by user
       },
       {
         $lookup: {
-          from: "podcast",
+          from: "podcasts", 
           localField: "_id",
           foreignField: "projectId",
-          as: "podcast", 
+          as: "podcasts", 
         },
       },
       {
