@@ -40,7 +40,7 @@ const SideBar = () => {
   const location = useLocation();
 
   return (
-    <div className="h-[100vh] bg-gray-50 border-r border-gray-200 flex flex-col">
+    <div className="h-[100vh] bg-white border-r border-gray-100 flex flex-col">
       <Link to="/" className="p-6 ">
         <img
           src="https://res.cloudinary.com/dzb0rtckl/image/upload/v1750905005/81b24b708a15005c2a5cc5fa6c34a9a4190a7020_flaniu.png"

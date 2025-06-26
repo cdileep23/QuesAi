@@ -1,46 +1,62 @@
 import PodcastModel from "../models/podcast.model.js";
 import ProjectModel from "../models/project.model.js";
-export const getPodcastsByProjectId=async(req,res)=>{
-    try {
-        const {projectId}=req.params;
-   if(!projectId){
+
+
+export const getPodcastsByProjectId = async (req, res) => {
+  try {
+    const { projectId } = req.params;
+
+    if (!projectId) {
+      return res.status(400).json({
+        success: false,
+        message: "Project ID is required",
+      });
+    }
+
+    // 1. Get the project document
+    const project = await ProjectModel.findById(projectId);
+    if (!project) {
+      return res.status(404).json({
+        success: false,
+        message: "Project not found",
+      });
+    }
+
+    // 2. Get podcasts associated with the project
+    const podcasts = await PodcastModel.find({ projectId });
+
+    // 3. Return combined response
+    return res.status(200).json({
+      success: true,
+      message: "Retrieved project and podcasts",
+      project,
+      podcasts,
+    });
+  } catch (error) {
+    console.error(error);
     return res.status(500).json({
       success: false,
-      message: "Project Id is required",
+      message: "Internal Server Error",
     });
-   }
+  }
+};
 
-   const podcasts=await PodcastModel.find({
-    projectId
-   })
-
-   return res.status(200).json({
-    success:true,
-    message:"Retreived Podcasts with projectId",
-    podcasts
-   })
-
-
-         
-
-    } catch (error) {
-         console.error(error);
-         return res.status(500).json({
-           success: false,
-           message: "Internal Server Error",
-         });
-    }
-}
 
 export const AddPodacst=async(req,res)=>{
     try {
-         const { projectId ,name,transcript} = req.body;
-         if (!projectId || !name|| !transcript) {
-           return res.status(500).json({
-             success: false,
-             message: "Project Id , name , transcript all are required",
-           });
-         }
+      
+        const { name, transcript } = req.body;
+    
+        const projectId = req.params.podcastId;
+
+        
+
+        if (!projectId || !name || !transcript) {
+          return res.status(500).json({
+            success: false,
+            message: "Project Id, name, and transcript are all required",
+          });
+        }
 
          const newPodcast=await PodcastModel.create({
             projectId,name,transcript

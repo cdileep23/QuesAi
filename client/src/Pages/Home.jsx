@@ -7,7 +7,7 @@ import axios from "axios";
 import { UserLoggedOut } from "@/store/userslice";
 import { AddProjects, resetProjecs } from "@/store/projectSlice";
 import { toast } from "sonner";
-import { useNavigate, Outlet, useLocation } from "react-router-dom"; // Added Outlet and useLocation
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -63,6 +63,7 @@ const Home = () => {
       }
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data?.message)
     } finally {
       setLoading(false);
       setName("");
@@ -84,7 +85,7 @@ const Home = () => {
     }
   };
 
-  // If we're on a nested route, just render the Outlet (ProjectLayout/AddPodcast)
+ 
   if (isNestedRoute) {
     return <Outlet />;
   }
