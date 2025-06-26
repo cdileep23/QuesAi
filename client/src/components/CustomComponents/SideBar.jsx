@@ -88,7 +88,7 @@ const SideBar = () => {
 
       {/* User Info Section */}
       <div className="px-4 pb-6 border-t border-gray-200 pt-4">
-        <Link to={`/project/${projectId}/profile`}>
+        <Link to={ projectId && `/project/${projectId}/profile`}>
           <div className="flex items-center gap-3 px-4 py-3">
             <div className="bg-gradient-to-br from-green-400 to-blue-500 text-white font-bold text-lg flex items-center justify-center rounded-full w-10 h-10 flex-shrink-0">
               {user?.name ? user.name[0].toUpperCase() : "U"}

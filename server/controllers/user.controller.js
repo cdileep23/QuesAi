@@ -4,6 +4,7 @@ import userModel from "../models/user.model.js";
 import isEmail from "validator/lib/isEmail.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import UserModel from "../models/user.model.js";
 
 export const signIn = async (req, res) => {
   try {
@@ -150,6 +151,32 @@ export const Logout = async (req, res) => {
     });
   } catch (error) {
     console.log("Logout error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+export const UpdateUserName = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const userId = req.userId;
+
+    const newUser = await UserModel.findByIdAndUpdate(
+      userId,
+      { name },
+      { new: true }
+    ).select("-password");
+
+
+
+    return res.status(200).json({
+      success: true,
+      message: "Updated User Name Successfully",
+      user: newUser, 
+    });
+  } catch (error) {
+    console.log("Update error:", error);
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",

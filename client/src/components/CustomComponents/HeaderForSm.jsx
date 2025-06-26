@@ -9,7 +9,7 @@ import { UserLoggedOut } from '@/store/userslice';
 import { resetProjecs } from '@/store/projectSlice';
 import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeaderForSm = ({ projectName, currentTab }) => {
     const dispatch=useDispatch()
@@ -31,10 +31,12 @@ const HeaderForSm = ({ projectName, currentTab }) => {
   return (
     <div className="w-full flex justify-between items-center px-4 py-2">
       <div className="flex items-center gap-2 text-[#999999] font-bold flex-wrap">
-        <div className="flex items-center gap-2">
-          <Home />
-          <h1 className="hidden lg:block">Home Page</h1>
-        </div>
+        <Link to={'/'}>
+          <div className="flex items-center gap-2">
+            <Home />
+            <h1 className="hidden lg:block">Home Page</h1>
+          </div>
+        </Link>
         {projectName && <span>/</span>}
         {projectName && <h1>{projectName}</h1>}
         <span>/</span>
@@ -46,9 +48,9 @@ const HeaderForSm = ({ projectName, currentTab }) => {
           <BellRing />
         </Button>
 
-        <Sheet >
+        <Sheet>
           <SheetTrigger>
-            <Button className='lg:hidden' variant={"outline"}>
+            <Button className="lg:hidden" variant={"outline"}>
               <Columns3 />
             </Button>
           </SheetTrigger>
