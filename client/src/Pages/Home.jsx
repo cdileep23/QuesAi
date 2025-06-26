@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { BASE_URL } from "../../lib/baseurl";
-import { Bell, CirclePlus, Loader, LogOut, Settings } from "lucide-react";
+import { Bell, BellRing, CirclePlus, Loader, LogOut, Settings } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -98,18 +98,25 @@ const Home = () => {
           />
 
           <div className="flex items-center gap-6">
-            <Settings size="30px" />
-            <Bell size="30px" />
-            <button onClick={HandleLogout} className="bg-white hover:bg:white">
-              <LogOut size="30px" className="text-[#3C3C3C] font-bold" />
-            </button>
+            <Button className="bg-white shadow hover:bg-white text-[#302d2d]">
+              <Settings size="30px" />
+            </Button>
+            <Button className="bg-white shadow hover:bg-white text-[#302d2d]">
+              <BellRing />
+            </Button>
+          
+             <Button
+                      className="bg-white shadow hover:bg-white text-red-500"
+                      onClick={HandleLogout}
+                    >
+                      <LogOut />
+                    </Button>
           </div>
         </div>
       </header>
 
       <div className="min-h-[70vh] w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-0">
-          {/* Always-mounted Dialog */}
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent>
               <DialogHeader>
