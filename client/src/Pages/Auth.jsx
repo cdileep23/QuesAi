@@ -53,11 +53,12 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-3">
-      <div className="hidden lg:block lg:col-span-2 bg-gradient-to-br from-[#b57fe3] to-[#6823a4] relative overflow-hidden">
-        <div className="flex flex-col  h-full px-10 py-10">
+      <div className="hidden lg:block lg:col-span-2 bg-gradient-to-br from-[#3A0B63] to-[#C37EFF] relative overflow-hidden">
+        <div className="flex flex-col h-full px-10 py-10">
           <h1 className="text-4xl mb-4 text-white font-bold">
             Ques.<span className="font-light">AI</span>
           </h1>
+
           <div className="max-w-lg">
             <h1 className="text-6xl font-light text-white mb-6 leading-tight mb-3">
               Your podcast
@@ -105,7 +106,7 @@ const Auth = () => {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200"
+              className="w-full bg-[#7E22CE] text-white font-medium py-3 px-4 rounded-lg transition duration-200"
             >
               <div className="flex items-center justify-center gap-2">
                 {loading && <Loader className="w-5 h-5 animate-spin" />}

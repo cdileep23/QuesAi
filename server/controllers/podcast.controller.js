@@ -237,7 +237,7 @@ export const editPodcast = async (req, res) => {
       podcastId,
       { transcript },
       { new: true }
-    );
+    ).populate('projectId');
 
     return res.status(200).json({
       success: true,
