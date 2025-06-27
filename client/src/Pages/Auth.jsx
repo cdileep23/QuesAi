@@ -5,10 +5,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from '../../lib/baseurl';
 import { Loader } from "lucide-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { UserLoggedIn } from "@/store/userslice";
 
 const Auth = () => {
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   const [currentStage, setCurrentStage] = useState("signup");
   const [loading,setLoading]=useState(false)
   const [data, setData] = useState({
@@ -33,6 +35,7 @@ const Auth = () => {
     console.log(res);
     if(res.data?.success){
       toast.success(res.data.message)
+     dispatch( UserLoggedIn(res.data.user))
       if (currentStage === "signup") {
         setCurrentStage("login");
       }else{

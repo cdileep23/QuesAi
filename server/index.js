@@ -17,6 +17,7 @@ app.use(
       "http://localhost:5173",
       "https://ques-ai-one.vercel.app",
       "https://quesai-1-i3l1.onrender.com",
+      "http://100.27.22.19/",
     ],
     credentials: true,
   })
