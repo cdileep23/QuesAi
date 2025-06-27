@@ -13,7 +13,11 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://ques-ai-one.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://ques-ai-one.vercel.app",
+      "https://quesai-1-i3l1.onrender.com",
+    ],
     credentials: true,
   })
 );

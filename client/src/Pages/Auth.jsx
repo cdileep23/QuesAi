@@ -1,10 +1,11 @@
 import { toast } from "sonner";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from '../../lib/baseurl';
 import { Loader } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const Auth = () => {
   const navigate=useNavigate()
@@ -50,6 +51,12 @@ const Auth = () => {
     });
   }
   };
+  const user=useSelector((store)=>store.user)
+useEffect(()=>{
+if(user){
+  navigate('/')
+}
+},[user])
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-3">
