@@ -83,7 +83,7 @@ console.log(podcasts)
                       </Link>
                       <Button
                         variant="outline"
-                        disabled={deletingId === e._id} // disable when deleting
+                        disabled={deletingId === e._id} 
                         className="text-red-500 ml-2 border-red-500 hover:text-red-500"
                         onClick={() => deletePodcastById(e._id)}
                       >

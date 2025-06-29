@@ -25,41 +25,40 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/project/:projectId",
+        element: <ProjectLayout />,
         children: [
           {
-            path: "project/:projectId",
-            element: <ProjectLayout />,
+            path: "add-podcast", // Relative path - no leading slash
+            element: <AddPodcast />,
             children: [
               {
-                path: "add-podcast", // Relative path - no leading slash
-                element: <AddPodcast />,
-                children: [
-                  {
-                    path: "podcast/:podcastId",
-                    element: <PodCast />,
-                  },
-                ],
-              },
-              {
-                path: "repurpose",
-                element: <Repurpose />,
-              },
-              {
-                path: "podcast-widget",
-                element: <PodCastWidget />,
-              },
-              {
-                path: "upgrade",
-                element: <Upgrade />,
-              },
-              {
-                path: "profile",
-                element: <UserProfile />,
+                path: "podcast/:podcastId",
+                element: <PodCast />,
               },
             ],
           },
+          {
+            path: "repurpose",
+            element: <Repurpose />,
+          },
+          {
+            path: "podcast-widget",
+            element: <PodCastWidget />,
+          },
+          {
+            path: "upgrade",
+            element: <Upgrade />,
+          },
+          {
+            path: "profile",
+            element: <UserProfile />,
+          },
         ],
       },
+
       {
         path: "auth",
         element: <Auth />,

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import HeaderForSm from "./HeaderForSm";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../../../lib/baseurl";
 import axios from "axios";
 import { ArrowLeft, Loader } from "lucide-react";
 import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 const PodCast = () => {
   const { podcastId ,projectId} = useParams();
@@ -12,7 +13,7 @@ const PodCast = () => {
   const [podcast, setPodcast] = useState(null);
   const [transcript, setTranscript] = useState("");
   const[loading,setLoading]=useState(false)
-
+  const navigate = useNavigate();
   const fetchPodcast = async () => {
     try {
       const url = `${BASE_URL}/podcast/${podcastId}`;
@@ -23,7 +24,10 @@ const PodCast = () => {
         setTranscript(res.data.podcast.transcript); 
       }
     } catch (error) {
-      console.log("Error fetching podcast:", error);
+        console.log("Error fetching podcast:", error);
+        toast.error(error.response.data.message);
+        console.log("error message");
+        navigate(`/project/${projectId}/add-podcast`);
     }
   };
 

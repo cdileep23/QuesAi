@@ -52,8 +52,8 @@ const UserProfile = () => {
 
       {user && (
         <div className="px-4 space-y-6 mt-6">
-          {/* Avatar & Inputs */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+         
+          <div className="flex flex-col md:flex-row md:items-center md:justify-around gap-4">
             {/* Avatar */}
             <div className="h-[60px] w-[60px] flex items-center justify-center text-[32px] font-bold text-[#4B0082] bg-[#E6E6FA] rounded-full shadow-md self-center md:self-auto">
               {user?.email[0]||"A"}

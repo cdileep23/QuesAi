@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../../../lib/baseurl";
 import React, { useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import HeaderForSm from "./HeaderForSm";
 import { File, Upload, UploadCloud, Youtube } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
@@ -28,6 +28,7 @@ const AddTypes = [
   },
 ];
 const AddPodcast = () => {
+    const navigate = useNavigate();
   const [loading,setLoading]=useState(false)
   const [data, setData] = useState(null);
   const[open,setOpen]=useState(false)
@@ -48,6 +49,8 @@ const AddPodcast = () => {
       }
     } catch (error) {
       console.log(error);
+        toast.error(error.response.data.message);
+        navigate("/");
     }
   };
 
@@ -65,8 +68,9 @@ console.log(formData)
       }
       setOpen(false)
     } catch (error) {
-      console.log(error)
-      toast.error(error.response.data.message)
+     console.log(error);
+     toast.error(error.response.data.message);
+     navigate("/");
     }finally{
       setFormData({
         name: "",
